@@ -10,6 +10,7 @@ A focused React landing page introducing core frontend concepts such as componen
 - Responsive concept cards and reusable visual structure
 - Local branding and icon-only external/support footer links
 - GitHub Pages deployment
+- Floating go-to-top control with smooth scrolling
 
 ## Tech stack
 

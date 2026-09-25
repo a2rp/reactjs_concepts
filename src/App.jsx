@@ -1,5 +1,5 @@
-import React from "react";
-import { FiArrowRight, FiBookOpen, FiCode, FiCoffee, FiFacebook, FiGithub, FiGlobe, FiHeart, FiLinkedin, FiMail, FiYoutube } from "react-icons/fi";
+import React, { useEffect, useState } from "react";
+import { FiArrowRight, FiArrowUp, FiBookOpen, FiCode, FiCoffee, FiFacebook, FiGithub, FiGlobe, FiHeart, FiLinkedin, FiMail, FiYoutube } from "react-icons/fi";
 import "./index.css";
 
 const concepts = [
@@ -23,10 +23,25 @@ const links = [
 ];
 
 function App() {
+  const [showGoTop, setShowGoTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setShowGoTop(window.scrollY > 360);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="app-shell">
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="React concepts home"><img src={`${import.meta.env.BASE_URL}logo.png`} alt="Ashish Ranjan logo" /><span><small>A2RP</small>React Concepts</span></a>
+        <a className="brand" href="#top" aria-label="React concepts home"><img src={import.meta.env.BASE_URL + "logo.png"} alt="Ashish Ranjan logo" /><span><small>A2RP</small>React Concepts</span></a>
         <a className="header-link" href="#concepts">Explore concepts <FiArrowRight /></a>
       </header>
       <main id="top" className="page-content">
@@ -41,7 +56,8 @@ function App() {
         </section>
         <section className="next-step"><div><p className="eyebrow">Keep building</p><h2>Good interfaces start with understandable fundamentals.</h2></div><FiArrowRight aria-hidden="true" /></section>
       </main>
-      <footer className="site-footer"><div className="footer-main"><span>Copyright © {new Date().getFullYear()} <a href="https://www.ashishranjan.net/" target="_blank" rel="noopener noreferrer">Ashish Ranjan</a></span><div className="footer-links">{links.map(([label, href, Icon]) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>{React.createElement(Icon)}</a>)}</div></div></footer>
+      <footer className="site-footer"><div className="footer-main"><span>Copyright &copy; {new Date().getFullYear()} <a href="https://www.ashishranjan.net/" target="_blank" rel="noopener noreferrer">Ashish Ranjan</a></span><div className="footer-links">{links.map(([label, href, Icon]) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>{React.createElement(Icon)}</a>)}</div></div></footer>
+      {showGoTop && <button className="go-top-button" type="button" onClick={scrollToTop} aria-label="Scroll to top" title="Scroll to top"><FiArrowUp aria-hidden="true" /></button>}
     </div>
   );
 }

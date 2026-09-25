@@ -39,3 +39,9 @@ h1 { margin-bottom: 18px; font-size: clamp(2.7rem, 8vw, 6.2rem); line-height: .9
 .footer-links a:hover, .footer-links a:focus-visible { border-color: #78adff; color: #fff; box-shadow: 0 0 17px rgba(76,137,255,.22); outline: none; }
 @media (max-width: 780px) { .concept-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .page-content { width: min(100% - 28px, 540px); padding-top: 115px; } .header-link { display: none; } .concept-grid { grid-template-columns: 1fr; } .footer-main { flex-direction: column; align-items: flex-start; } }
+
+.go-top-button { position: fixed; right: 24px; bottom: 24px; z-index: 20; display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid rgba(137,181,238,.25); border-radius: 50%; background: #10223c; color: #e0eeff; cursor: pointer; box-shadow: 0 12px 30px rgba(0,0,0,.28); transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, text-shadow 180ms ease; }
+.go-top-button:hover, .go-top-button:focus-visible { border-color: #78adff; color: #fff; box-shadow: 0 0 0 3px rgba(76,137,255,.22); text-shadow: 0 0 12px rgba(130,180,255,.5); }
+.go-top-button:focus-visible { outline: 2px solid #78adff; outline-offset: 3px; }
+.go-top-button svg { width: 17px; height: 17px; }
+@media (max-width: 560px) { .go-top-button { right: 16px; bottom: 16px; } }
