@@ -45,3 +45,8 @@ h1 { margin-bottom: 18px; font-size: clamp(2.7rem, 8vw, 6.2rem); line-height: .9
 .go-top-button:focus-visible { outline: 2px solid #acacac; outline-offset: 3px; }
 .go-top-button svg { width: 17px; height: 17px; }
 @media (max-width: 560px) { .go-top-button { right: 16px; bottom: 16px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}

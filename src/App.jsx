@@ -35,28 +35,29 @@ function App() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    window.scrollTo({ top: 0, behavior });
   };
 
   return (
     <div className="app-shell">
       <header className="site-header">
         <a className="brand" href="#top" aria-label="React concepts home"><img src={import.meta.env.BASE_URL + "logo.png"} alt="Ashish Ranjan logo" /><span><small>A2RP</small>React Concepts</span></a>
-        <a className="header-link" href="#concepts">Explore concepts <FiArrowRight /></a>
+        <a className="header-link" href="#concepts">Explore concepts <FiArrowRight aria-hidden="true" /></a>
       </header>
       <main id="top" className="page-content">
         <section className="hero">
           <p className="eyebrow">Frontend foundations</p>
           <h1>Learn React one clear idea at a time.</h1>
           <p>A small, focused starting point for exploring the building blocks behind modern React interfaces.</p>
-          <a className="primary-link" href="#concepts">Browse the concepts <FiArrowRight /></a>
+          <a className="primary-link" href="#concepts">Browse the concepts <FiArrowRight aria-hidden="true" /></a>
         </section>
         <section id="concepts" className="concept-grid" aria-label="React concepts">
-          {concepts.map(([title, description, Icon], index) => <article className="concept-card" key={title}><span className="card-number">0{index + 1}</span><span className="card-icon">{React.createElement(Icon)}</span><h2>{title}</h2><p>{description}</p></article>)}
+          {concepts.map(([title, description, Icon], index) => <article className="concept-card" key={title}><span className="card-number">0{index + 1}</span><span className="card-icon">{React.createElement(Icon, { "aria-hidden": "true" })}</span><h2>{title}</h2><p>{description}</p></article>)}
         </section>
         <section className="next-step"><div><p className="eyebrow">Keep building</p><h2>Good interfaces start with understandable fundamentals.</h2></div><FiArrowRight aria-hidden="true" /></section>
       </main>
-      <footer className="site-footer"><div className="footer-main"><span>Copyright &copy; {new Date().getFullYear()} <a href="https://www.ashishranjan.net/" target="_blank" rel="noopener noreferrer">Ashish Ranjan</a></span><div className="footer-links">{links.map(([label, href, Icon]) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>{React.createElement(Icon)}</a>)}</div></div></footer>
+      <footer className="site-footer"><div className="footer-main"><span>Copyright &copy; {new Date().getFullYear()} <a href="https://www.ashishranjan.net/" target="_blank" rel="noopener noreferrer">Ashish Ranjan</a></span><div className="footer-links">{links.map(([label, href, Icon]) => <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>{React.createElement(Icon, { "aria-hidden": "true" })}</a>)}</div></div></footer>
       {showGoTop && <button className="go-top-button" type="button" onClick={scrollToTop} aria-label="Scroll to top" title="Scroll to top"><FiArrowUp aria-hidden="true" /></button>}
     </div>
   );
